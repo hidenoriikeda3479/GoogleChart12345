@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Google Chartsの読み込み -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      // Google Chartsのロード
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Google Chartsの描画準備ができたら、drawChart()関数を呼び出す
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        // データの作成
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Month');
+        data.addColumn('number', 'Company A');
+        data.addColumn('number', 'Company B');
+        data.addColumn('number', 'Company C');
+        data.addRows([
+          ['01', getRandomSales(), getRandomSales(), getRandomSales()],
+          ['02', getRandomSales(), getRandomSales(), getRandomSales()],
+          ['03', getRandomSales(), getRandomSales(), getRandomSales()],
+          ['04', getRandomSales(), getRandomSales(), getRandomSales()],
+          ['05', getRandomSales(), getRandomSales(), getRandomSales()],
+          ['06', getRandomSales(), getRandomSales(), getRandomSales()],
+          ['07', getRandomSales(), getRandomSales(), getRandomSales()],
+          ['08', getRandomSales(), getRandomSales(), getRandomSales()],
+          ['09', getRandomSales(), getRandomSales(), getRandomSales()],
+          ['10', getRandomSales(), getRandomSales(), getRandomSales()],
+          ['11', getRandomSales(), getRandomSales(), getRandomSales()],
+          ['12', getRandomSales(), getRandomSales(), getRandomSales()]
+        ]);
+
+        // グラフのオプション設定
+        var options = {
+          title: 'Sales Trend',
+          width: '100%',
+          height: 400,
+          curveType: 'none',
+          legend: { position: 'bottom' }
+        };
+
+        // 折れ線グラフの描画
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+
+      function getRandomSales() {
+        return Math.floor(Math.random() * (500000000 - 100000000 + 1)) + 100000000;
+      }
+    </script>
+    <style>
+      #chart_div {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 折れ線グラフを描画するための要素 -->
+    <div id="chart_div"></div>
+  </body>
+</html>
